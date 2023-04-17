@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>progressbar quiz</title>
+    <style>
+        .progress-bar {
+        height: 50px;
+        background-color: #ddd;
+        }
+
+        .progress {
+        height: 50px;
+        opacity: 0.8;
+        background-color: green;
+        width: 0%; /* 초기값 */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div id="progress" class="progress"></div>
+    </div>
+
+    <script>
+        const progressBar = document.querySelector('.progress-bar');
+        const progress = document.querySelector('.progress');
+        let progressValue = 0;
+        let direction = 'increase'; 
+
+        function increaseProgress() {
+        if (direction === 'increase') {
+            progressValue += 10;
+            progress.style.width = `${progressValue}%`;
+            if (progressValue >= 100) {
+            direction = 'decrease';
+            }
+        } else {
+            progressValue -= 10;
+            progress.style.width = `${progressValue}%`;
+            if (progressValue <= 0) {
+            direction = 'increase';
+            }
+        }
+        console.log(`progressValue: ${progressValue}, direction: ${direction}`);
+    }
+
+        setInterval(increaseProgress, 1000); 
+    </script>
+</body>
+</html>
